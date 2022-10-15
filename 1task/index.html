@@ -7,14 +7,73 @@
     <title>Document</title>
 </head>
 <body>
-    <form oninput="feets.value = (meters.value * 3.28084)">
-        <p><b>Введите метры:</b><br>
-            <input type="number" id="meters" min="0" required>
-        </p>
-        <p><b>Футы:</b><br>
-            <input type="number" id="feets" value="0" readonly>
-        </p>
-    </form>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script> -->
+    <div id="units">
+        <div>
+            Футы: <input type="number" v-model="foot"/><br>
+            Мили: <p id="meters">{{meters}}</p>
+        </div>
+        <div>
+            Мили: <input type="number" v-model="miles"/><br>
+            Километры: <p id="km">{{km}}</p>
+        </div>
+        <div>
+            Градусы: <input type="number" v-model="grad"/><br>
+            Радианы: <p id="rad">{{rad}}</p>
+        </div>
+        <div>
+            Цельсии: <input type="number" v-model="cel"/><br>
+            Фаренгейты: <p id="far">{{far}}</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#units',
+            data:{
+                foot:"",
+                miles:"",
+                grad:"",
+                cel:"",
+                meters:"",
+                km:"",
+                rad:"",
+                far:"",
+            },
+            watch:{
+                foot:function(newfoot, oldfoot){
+                    if(newfoot!=''){
+                        this.meters= newfoot*0.3048;
+                    }
+                    else{
+                        this.meters="";    
+                    }
+                },
+                miles:function(newmiles, oldmiles){
+                    if(newmiles!=''){
+                        this.km= newmiles*1.60934;
+                    }
+                    else{
+                        this.km="";    
+                    }
+                },
+                grad:function(newgrad, oldgrad){
+                    if(newgrad!=''){
+                        this.rad= newgrad*Math.PI/180;
+                    }
+                    else{
+                        this.rad="";    
+                    }
+                },
+                cel:function(newcel, oldcel){
+                    if(newcel!=''){
+                        this.far= newcel*9/5+32;
+                    }
+                    else{
+                        this.far="";    
+                    }
+                }
+            }
+        })
+    </script>
 </body>
 </html>
