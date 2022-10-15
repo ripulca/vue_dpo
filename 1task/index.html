@@ -9,20 +9,48 @@
 <body>
     <div id="units">
         <div>
-            Футы: <input type="number" v-model="foot"/><br>
-            Мили: <p id="meters">{{meters}}</p>
+            <div v-if="seen_1">
+                Футы: <input type="number" v-model="foot"/><br>
+                Метры: <span id="meters">{{meters}}</span>
+            </div>
+            <div v-else>
+                Метры: <input type="number" v-model="meters"/><br>
+                Футы: <span id="foot">{{foot}}</span>
+            </div>
+            <button @click="seen_1 = !seen_1">поменять местами</button>
         </div>
         <div>
-            Мили: <input type="number" v-model="miles"/><br>
-            Километры: <p id="km">{{km}}</p>
+            <div v-if="seen_2">
+                Мили: <input type="number" v-model="miles"/><br>
+                Километры: <span id="km">{{km}}</span>
+            </div>
+            <div v-else>
+                Километры: <input type="number" v-model="km"/><br>
+                Мили: <span id="miles">{{miles}}</span>
+            </div>
+            <button @click="seen_2 = !seen_2">поменять местами</button>
         </div>
         <div>
-            Градусы: <input type="number" v-model="grad"/><br>
-            Радианы: <p id="rad">{{rad}}</p>
+            <div v-if="seen_3">
+                Градусы: <input type="number" v-model="grad"/><br>
+                Радианы: <span id="rad">{{rad}}</span>
+            </div>
+            <div v-else>
+                Радианы: <input type="number" v-model="rad"/><br>
+                Градусы: <span id="grad">{{grad}}</span>
+            </div>
+            <button @click="seen_3 = !seen_3">поменять местами</button>
         </div>
         <div>
-            Цельсии: <input type="number" v-model="cel"/><br>
-            Фаренгейты: <p id="far">{{far}}</p>
+            <div v-if="seen_4">
+                Цельсии: <input type="number" v-model="cel"/><br>
+                Фаренгейты: <span id="far">{{far}}</span>
+            </div>
+            <div v-else>
+                Фаренгейты: <input type="number" v-model="far"/><br>
+                Цельсии: <span id="cel">{{cel}}</span>
+            </div>
+            <button @click="seen_4 = !seen_4">поменять местами</button>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
@@ -38,38 +66,90 @@
                 km:"",
                 rad:"",
                 far:"",
+                seen_1:true,
+                seen_2:true,
+                seen_3:true,
+                seen_4:true,
             },
             watch:{
                 foot:function(newfoot, oldfoot){
-                    if(newfoot!=''){
-                        this.meters= newfoot*0.3048;
+                    if(this.seen_1==true){
+                        if(newfoot!=''){
+                            this.meters= newfoot*0.3048;
+                        }
+                        else{
+                            this.meters="";    
+                        }
                     }
-                    else{
-                        this.meters="";    
+                },
+                meters:function(newmeters, oldmeters){
+                    if(this.seen_1==false){
+                        if(newmeters!=''){
+                            this.foot= newmeters/0.3048;
+                        }
+                        else{
+                            this.foot="";    
+                        }
                     }
                 },
                 miles:function(newmiles, oldmiles){
-                    if(newmiles!=''){
-                        this.km= newmiles*1.60934;
+                    if(this.seen_2==true){
+                        if(newmiles!=''){
+                            this.km= newmiles*1.60934;
+                        }
+                        else{
+                            this.km="";    
+                        }
                     }
-                    else{
-                        this.km="";    
+                },
+                km:function(newkm, oldkm){
+                    if(this.seen_2==false){
+                        if(newkm!=''){
+                            this.miles= newkm/1.60934;
+                        }
+                        else{
+                            this.miles="";    
+                        }
                     }
                 },
                 grad:function(newgrad, oldgrad){
-                    if(newgrad!=''){
-                        this.rad= newgrad*Math.PI/180;
+                    if(this.seen_3==true){
+                        if(newgrad!=''){
+                            this.rad= newgrad*Math.PI/180;
+                        }
+                        else{
+                            this.rad="";    
+                        }
                     }
-                    else{
-                        this.rad="";    
+                },
+                rad:function(newrad, oldrad){
+                    if(this.seen_3==false){
+                        if(newrad!=''){
+                            this.grad= newrad/Math.PI*180;
+                        }
+                        else{
+                            this.grad="";    
+                        }
                     }
                 },
                 cel:function(newcel, oldcel){
-                    if(newcel!=''){
-                        this.far= newcel*9/5+32;
+                    if(this.seen_4==true){
+                        if(newcel!=''){
+                            this.far= newcel*9/5+32;
+                        }
+                        else{
+                            this.far="";    
+                        }
                     }
-                    else{
-                        this.far="";    
+                },
+                far:function(newfar, oldfar){
+                    if(this.seen_4==false){
+                        if(newfar!=''){
+                            this.cel= (newfar-32)/9*5;
+                        }
+                        else{
+                            this.cel="";    
+                        }
                     }
                 }
             }
