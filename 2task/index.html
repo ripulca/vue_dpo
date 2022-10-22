@@ -1,73 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <title>Document</title>
 </head>
-<body class="text-bg-dark">
-    <div class="px-4 py-5">
-        <h2 class="pb-2 border-bottom px-4">Профессия</h2>
-        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-5 py-5 container">
-            <img class="card card-cover overflow-hidden rounded-4 shadow-lg" src="https://sun9-west.userapi.com/sun9-11/s/v1/ig2/tZf3hZeGb_3NdicbSCG7vZvGaftWkBp1vyHzGexUolahMDyTjMi2NSrJZaIbA1BdO5FAfPN2le2ik3nNeHPVDdNE.jpg?size=736x687&quality=95&type=album" alt="placeholder" />
+
+<body>
+    <div id="form">
+        <div class="px-4 py-5">
             <div>
-                <div>
+                <p>Введите ФИО</p>
+                <input type="text" v-model="FIO"/>
+            </div>
+            <div>
+                <p>Введите ДР</p>
+                <input type="date" v-model="BD"/>
+            </div>
+            <div>
+                <p>Введите город</p>
+                <input type="text" v-model="city"/>
+            </div>
+            <div>
+                <p>Введите email</p>
+                <input type="text" v-model="email"/>
+            </div>
+            <div>
+                <p>Введите образование</p>
+                <input type="text" v-model="education"/>
+            </div>
+            <div>
+                <p>Введите свои навыки</p>
+                <input type="text" v-model="skills"/>
+            </div>
+            <div>
+                <p>Введите информацию о себе</p>
+                <input type="text" v-model="about_me"/>
+            </div>
+            <div>
+                <p>Введите желаемую ЗП</p>
+                <input type="number" v-model.number="salary"/>
+            </div>
+        </div>
+        <div class="text-bg-dark">
+            <div class="px-4 py-5">
+                <h2 class="pb-2 border-bottom px-4">Профессия</h2>
+                <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-5 py-5 container">
+                    <img class="card card-cover overflow-hidden rounded-4 shadow-lg"
+                        src="https://sun9-west.userapi.com/sun9-11/s/v1/ig2/tZf3hZeGb_3NdicbSCG7vZvGaftWkBp1vyHzGexUolahMDyTjMi2NSrJZaIbA1BdO5FAfPN2le2ik3nNeHPVDdNE.jpg?size=736x687&quality=95&type=album"
+                        alt="placeholder" />
                     <div>
-                        <h4>ФИО</h4> 
-                        <p>
-                            test
-                        </p>
+                        <div>
+                            <h4>ФИО</h4>
+                            <p>{{FIO}}</p>
+                        </div>
+                        <div>
+                            <h4>ДР</h4>
+                            <p>{{BD}}</p>
+                        </div>
+                        <div>
+                            <h4>Город</h4>
+                            <p>{{city}}</p>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>{{email}}</p>
+                        </div>
                     </div>
                     <div>
-                        <h4>ДР</h4>
-                        <p>
-                            test
-                        </p>
-                    </div>
-                    <div>
-                        <h4>Город</div>
-                        <p>
-                            test
-                        </p>
-                    </div>
-                </div>
-                <div>
-                    <h4>Email</h4>
-                    <p>
-                        test
-                    </p>
-                </div>
-                <div>
-                    <div>
-                        <h4>Образование</h4>
-                        <p>
-                            test
-                        </p>
-                    </div>
-                    <div>
-                        <h4>Навыки</div>
-                        <p>
-                            test
-                        </p>
-                    </div>
-                    <div>
-                        <h4>О себе</h4>
-                        <p>
-                            test
-                        </p>
+                        <div>
+                            <h4>Образование</h4>
+                            <p>{{education}}</p>
+                        </div>
+                        <div>
+                            <h4>Навыки</h4>
+                            <p>{{skills}}</p>
+                        </div>
+                        <div>
+                            <h4>О себе</h4>
+                            <p>{{about_me}}</p>
+                        </div>
                     </div>
                 </div>
                 <div>
                     <h4>Желаемая ЗП</h4>
-                    <p>
-                        test
-                    </p>
+                    <p>{{salary}}</p>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#form',
+            data:{
+                FIO:"",
+                BD:"",
+                city:"",
+                email:"",
+                education:"",
+                skills:"",
+                about_me:"",
+                salary:"",
+            },
+        })
+    </script>
 </body>
+
 </html>
