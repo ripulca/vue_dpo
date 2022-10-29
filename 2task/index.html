@@ -27,7 +27,7 @@
             </div>
             <div>
                 <p>Введите email</p>
-                <input type="text" id="email" v-model="email" />
+                <input type="text" id="email" v-model.lazy="email" />
             </div>
             <div>
                 <p>Введите образование</p>
@@ -110,11 +110,11 @@
             },
             watch: {
                 FIO: function (newFIO, oldFIO) {
-                    const regex = /[А-ЯA-Zа-яa-z ]/g;
+                    const regex = /[А-ЯA-Zа-яa-z -]/g;
                     newFIO = newFIO.match(regex);
                     console.log(newFIO);
-                    if (!newFIO) {
-                        newFIO.join('');
+                    if (newFIO) {
+                        newFIO = newFIO.join('');
                         this.FIO = newFIO;
                     }
                     else {
@@ -122,10 +122,10 @@
                     }
                 },
                 city: function (newcity, oldcity) {
-                    const regex = /[А-ЯA-Zа-яa-z\s\-]/g;
+                    const regex = /[А-ЯA-Zа-яa-z -]/g;
                     newcity = newcity.match(regex);
-                    if (!newcity) {
-                        newcity.join('');
+                    if (newcity) {
+                        newcity = newcity.join('');
                         this.city = newcity;
                     }
                     else {
@@ -133,10 +133,10 @@
                     }
                 },
                 email: function (newemail, oldemail) {
-                    const regex = /^[-А-ЯA-Z\x27а-яa-z]/;
+                    const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
                     newemail = newemail.match(regex);
-                    if (!newemail) {
-                        newemail.join('');
+                    if (newemail) {
+                        newemail = newemail.join('');
                         this.email = newemail;
                     }
                     else {
@@ -144,10 +144,10 @@
                     }
                 },
                 education: function (neweducation, oldeducation) {
-                    const regex = /^[-А-ЯA-Z\x27а-яa-z]/;
+                    const regex = /[А-ЯA-Zа-яa-z -]/g;
                     neweducation = neweducation.match(regex);
-                    if (!neweducation) {
-                        neweducation.join('');
+                    if (neweducation) {
+                        neweducation = neweducation.join('');
                         this.education = neweducation;
                     }
                     else {
@@ -155,10 +155,10 @@
                     }
                 },
                 skills: function (newskills, oldskills) {
-                    const regex = /^[-А-ЯA-Z\x27а-яa-z]/;
+                    const regex = /[А-ЯA-Zа-яa-z -]/g;
                     newskills = newskills.match(regex);
-                    if (!newskill) {
-                        newskills.join('');
+                    if (newskill) {
+                        newskills = newskills.join('');
                         this.skills = newskills;
                     }
                     else {
@@ -166,10 +166,10 @@
                     }
                 },
                 about_me: function (newabout_me, oldabout_me) {
-                    const regex = /^[-А-ЯA-Z\x27а-яa-z]/;
+                    const regex = /[А-ЯA-Zа-яa-z -]/g;
                     newabout_me = newabout_me.match(regex);
-                    if (!newabout_me) {
-                        newabout_me.join('');
+                    if (newabout_me) {
+                        newabout_me = newabout_me.join('');
                         this.about_me = newabout_me;
                     }
                     else {
