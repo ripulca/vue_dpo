@@ -1,154 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <title>Document</title>
 </head>
+
 <body>
-    <div id="units">
-        <div>
-            <div v-if="seen_1">
-                Футы: <input type="number" v-model="foot"/><br>
-                Метры: <span id="meters">{{meters}}</span>
+    <div class="px-4 py-5 my-5 text-center">
+        <div id="units">
+            <div>
+                <div v-if="seen_1">
+                    Футы: <input type="number" v-model="foot" /><br>
+                    Метры: <span id="meters">{{meters}}</span>
+                </div>
+                <div v-else>
+                    Метры: <input type="number" v-model="meters" /><br>
+                    Футы: <span id="foot">{{foot}}</span>
+                </div>
+                <br>
+                <button @click="seen_1 = !seen_1">поменять местами</button>
             </div>
-            <div v-else>
-                Метры: <input type="number" v-model="meters"/><br>
-                Футы: <span id="foot">{{foot}}</span>
+            <br>
+            <div>
+                <div v-if="seen_2">
+                    Мили: <input type="number" v-model="miles" /><br>
+                    Километры: <span id="km">{{km}}</span>
+                </div>
+                <div v-else>
+                    Километры: <input type="number" v-model="km" /><br>
+                    Мили: <span id="miles">{{miles}}</span>
+                </div>
+                <br>
+                <button @click="seen_2 = !seen_2">поменять местами</button>
             </div>
-            <button @click="seen_1 = !seen_1">поменять местами</button>
-        </div>
-        <div>
-            <div v-if="seen_2">
-                Мили: <input type="number" v-model="miles"/><br>
-                Километры: <span id="km">{{km}}</span>
+            <br>
+            <div>
+                <div v-if="seen_3">
+                    Градусы: <input type="number" v-model="grad" /><br>
+                    Радианы: <span id="rad">{{rad}}</span>
+                </div>
+                <div v-else>
+                    Радианы: <input type="number" v-model="rad" /><br>
+                    Градусы: <span id="grad">{{grad}}</span>
+                </div>
+                <br>
+                <button @click="seen_3 = !seen_3">поменять местами</button>
             </div>
-            <div v-else>
-                Километры: <input type="number" v-model="km"/><br>
-                Мили: <span id="miles">{{miles}}</span>
+            <br>
+            <div>
+                <div v-if="seen_4">
+                    Цельсии: <input type="number" v-model="cel" /><br>
+                    Фаренгейты: <span id="far">{{far}}</span>
+                </div>
+                <div v-else>
+                    Фаренгейты: <input type="number" v-model="far" /><br>
+                    Цельсии: <span id="cel">{{cel}}</span>
+                </div>
+                <br>
+                <button @click="seen_4 = !seen_4">поменять местами</button>
             </div>
-            <button @click="seen_2 = !seen_2">поменять местами</button>
-        </div>
-        <div>
-            <div v-if="seen_3">
-                Градусы: <input type="number" v-model="grad"/><br>
-                Радианы: <span id="rad">{{rad}}</span>
-            </div>
-            <div v-else>
-                Радианы: <input type="number" v-model="rad"/><br>
-                Градусы: <span id="grad">{{grad}}</span>
-            </div>
-            <button @click="seen_3 = !seen_3">поменять местами</button>
-        </div>
-        <div>
-            <div v-if="seen_4">
-                Цельсии: <input type="number" v-model="cel"/><br>
-                Фаренгейты: <span id="far">{{far}}</span>
-            </div>
-            <div v-else>
-                Фаренгейты: <input type="number" v-model="far"/><br>
-                Цельсии: <span id="cel">{{cel}}</span>
-            </div>
-            <button @click="seen_4 = !seen_4">поменять местами</button>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
     <script>
         new Vue({
-            el:'#units',
-            data:{
-                foot:"",
-                miles:"",
-                grad:"",
-                cel:"",
-                meters:"",
-                km:"",
-                rad:"",
-                far:"",
-                seen_1:true,
-                seen_2:true,
-                seen_3:true,
-                seen_4:true,
+            el: '#units',
+            data: {
+                foot: "",
+                miles: "",
+                grad: "",
+                cel: "",
+                meters: "",
+                km: "",
+                rad: "",
+                far: "",
+                seen_1: true,
+                seen_2: true,
+                seen_3: true,
+                seen_4: true,
             },
-            watch:{
-                foot:function(newfoot, oldfoot){
-                    if(this.seen_1==true){
-                        if(newfoot!=''){
-                            this.meters= newfoot*0.3048;
+            watch: {
+                foot: function (newfoot, oldfoot) {
+                    if (this.seen_1 == true) {
+                        if (newfoot != '') {
+                            this.meters = newfoot * 0.3048;
                         }
-                        else{
-                            this.meters="";    
-                        }
-                    }
-                },
-                meters:function(newmeters, oldmeters){
-                    if(this.seen_1==false){
-                        if(newmeters!=''){
-                            this.foot= newmeters/0.3048;
-                        }
-                        else{
-                            this.foot="";    
+                        else {
+                            this.meters = "";
                         }
                     }
                 },
-                miles:function(newmiles, oldmiles){
-                    if(this.seen_2==true){
-                        if(newmiles!=''){
-                            this.km= newmiles*1.60934;
+                meters: function (newmeters, oldmeters) {
+                    if (this.seen_1 == false) {
+                        if (newmeters != '') {
+                            this.foot = newmeters / 0.3048;
                         }
-                        else{
-                            this.km="";    
-                        }
-                    }
-                },
-                km:function(newkm, oldkm){
-                    if(this.seen_2==false){
-                        if(newkm!=''){
-                            this.miles= newkm/1.60934;
-                        }
-                        else{
-                            this.miles="";    
+                        else {
+                            this.foot = "";
                         }
                     }
                 },
-                grad:function(newgrad, oldgrad){
-                    if(this.seen_3==true){
-                        if(newgrad!=''){
-                            this.rad= newgrad*Math.PI/180;
+                miles: function (newmiles, oldmiles) {
+                    if (this.seen_2 == true) {
+                        if (newmiles != '') {
+                            this.km = newmiles * 1.60934;
                         }
-                        else{
-                            this.rad="";    
-                        }
-                    }
-                },
-                rad:function(newrad, oldrad){
-                    if(this.seen_3==false){
-                        if(newrad!=''){
-                            this.grad= newrad/Math.PI*180;
-                        }
-                        else{
-                            this.grad="";    
+                        else {
+                            this.km = "";
                         }
                     }
                 },
-                cel:function(newcel, oldcel){
-                    if(this.seen_4==true){
-                        if(newcel!=''){
-                            this.far= newcel*9/5+32;
+                km: function (newkm, oldkm) {
+                    if (this.seen_2 == false) {
+                        if (newkm != '') {
+                            this.miles = newkm / 1.60934;
                         }
-                        else{
-                            this.far="";    
+                        else {
+                            this.miles = "";
                         }
                     }
                 },
-                far:function(newfar, oldfar){
-                    if(this.seen_4==false){
-                        if(newfar!=''){
-                            this.cel= (newfar-32)/9*5;
+                grad: function (newgrad, oldgrad) {
+                    if (this.seen_3 == true) {
+                        if (newgrad != '') {
+                            this.rad = newgrad * Math.PI / 180;
                         }
-                        else{
-                            this.cel="";    
+                        else {
+                            this.rad = "";
+                        }
+                    }
+                },
+                rad: function (newrad, oldrad) {
+                    if (this.seen_3 == false) {
+                        if (newrad != '') {
+                            this.grad = newrad / Math.PI * 180;
+                        }
+                        else {
+                            this.grad = "";
+                        }
+                    }
+                },
+                cel: function (newcel, oldcel) {
+                    if (this.seen_4 == true) {
+                        if (newcel != '') {
+                            this.far = newcel * 9 / 5 + 32;
+                        }
+                        else {
+                            this.far = "";
+                        }
+                    }
+                },
+                far: function (newfar, oldfar) {
+                    if (this.seen_4 == false) {
+                        if (newfar != '') {
+                            this.cel = (newfar - 32) / 9 * 5;
+                        }
+                        else {
+                            this.cel = "";
                         }
                     }
                 }
@@ -156,4 +169,5 @@
         })
     </script>
 </body>
+
 </html>

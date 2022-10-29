@@ -15,35 +15,35 @@
         <div class="px-4 py-5">
             <div>
                 <p>Введите ФИО</p>
-                <input type="text" v-model="FIO"/>
+                <input type="text" id="FIO" v-model="FIO" />
             </div>
             <div>
                 <p>Введите ДР</p>
-                <input type="date" v-model="BD"/>
+                <input type="date" id="BD" v-model="BD" />
             </div>
             <div>
                 <p>Введите город</p>
-                <input type="text" v-model="city"/>
+                <input type="text" id="city" v-model="city" />
             </div>
             <div>
                 <p>Введите email</p>
-                <input type="text" v-model="email"/>
+                <input type="text" id="email" v-model="email" />
             </div>
             <div>
                 <p>Введите образование</p>
-                <input type="text" v-model="education"/>
+                <input type="text" id="education" v-model="education" />
             </div>
             <div>
                 <p>Введите свои навыки</p>
-                <input type="text" v-model="skills"/>
+                <input type="text" id="skills" v-model="skills" />
             </div>
             <div>
                 <p>Введите информацию о себе</p>
-                <input type="text" v-model="about_me"/>
+                <input type="text" id="about_me" v-model="about_me" />
             </div>
             <div>
                 <p>Введите желаемую ЗП</p>
-                <input type="number" v-model.number="salary"/>
+                <input type="number" id="salary" v-model.number="salary" />
             </div>
         </div>
         <div class="text-bg-dark">
@@ -93,21 +93,90 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
     <script>
         new Vue({
-            el:'#form',
-            data:{
-                FIO:"",
-                BD:"",
-                city:"",
-                email:"",
-                education:"",
-                skills:"",
-                about_me:"",
-                salary:"",
+            el: '#form',
+            data: {
+                FIO: "",
+                BD: "",
+                city: "",
+                email: "",
+                education: "",
+                skills: "",
+                about_me: "",
+                salary: "",
             },
+            watch: {
+                FIO: function (newFIO, oldFIO) {
+                    const regex = /[А-ЯA-Zа-яa-z ]/g;
+                    newFIO = newFIO.match(regex);
+                    console.log(newFIO);
+                    if (!newFIO) {
+                        newFIO.join('');
+                        this.FIO = newFIO;
+                    }
+                    else {
+                        this.FIO = "";
+                    }
+                },
+                city: function (newcity, oldcity) {
+                    const regex = /[А-ЯA-Zа-яa-z\s\-]/g;
+                    newcity = newcity.match(regex);
+                    if (!newcity) {
+                        newcity.join('');
+                        this.city = newcity;
+                    }
+                    else {
+                        this.city = "";
+                    }
+                },
+                email: function (newemail, oldemail) {
+                    const regex = /^[-А-ЯA-Z\x27а-яa-z]/;
+                    newemail = newemail.match(regex);
+                    if (!newemail) {
+                        newemail.join('');
+                        this.email = newemail;
+                    }
+                    else {
+                        this.email = "";
+                    }
+                },
+                education: function (neweducation, oldeducation) {
+                    const regex = /^[-А-ЯA-Z\x27а-яa-z]/;
+                    neweducation = neweducation.match(regex);
+                    if (!neweducation) {
+                        neweducation.join('');
+                        this.education = neweducation;
+                    }
+                    else {
+                        this.education = "";
+                    }
+                },
+                skills: function (newskills, oldskills) {
+                    const regex = /^[-А-ЯA-Z\x27а-яa-z]/;
+                    newskills = newskills.match(regex);
+                    if (!newskill) {
+                        newskills.join('');
+                        this.skills = newskills;
+                    }
+                    else {
+                        this.skills = "";
+                    }
+                },
+                about_me: function (newabout_me, oldabout_me) {
+                    const regex = /^[-А-ЯA-Z\x27а-яa-z]/;
+                    newabout_me = newabout_me.match(regex);
+                    if (!newabout_me) {
+                        newabout_me.join('');
+                        this.about_me = newabout_me;
+                    }
+                    else {
+                        this.about_me = "";
+                    }
+                },
+            }
         })
     </script>
 </body>
