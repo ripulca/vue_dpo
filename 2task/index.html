@@ -12,35 +12,49 @@
 
 <body>
     <div id="form">
-        <div class="px-4 py-5">
+        <div class="px-4 py-3">
+            <h2>Мое офигенное резюме</h2>
+            <br>
             <div>
                 <p>Введите ФИО</p>
-                <input type="text" id="FIO" v-model="FIO" />
+                <input :style="{ color: activeColor1 }" type="text" id="FIO" v-model="FIO" />
             </div>
+            <br>
             <div>
                 <p>Введите ДР</p>
                 <input type="date" id="BD" v-model="BD" />
             </div>
+            <br>
             <div>
                 <p>Введите город</p>
                 <input type="text" id="city" v-model="city" />
             </div>
+            <br>
             <div>
                 <p>Введите email</p>
-                <input type="text" id="email" v-model.lazy="email" />
+                <input :style="{ color: activeColor }" type="text" id="email" v-model.lazy="email" />
             </div>
+            <br>
+            <div>
+                <p>Введите телефон</p>
+                <input :style="{ color: activeColor2 }" type="tel" id="phone" v-model.lazy="phone" />
+            </div>
+            <br>
             <div>
                 <p>Введите образование</p>
                 <input type="text" id="education" v-model="education" />
             </div>
+            <br>
             <div>
                 <p>Введите свои навыки</p>
                 <input type="text" id="skills" v-model="skills" />
             </div>
+            <br>
             <div>
                 <p>Введите информацию о себе</p>
                 <input type="text" id="about_me" v-model="about_me" />
             </div>
+            <br>
             <div>
                 <p>Введите желаемую ЗП</p>
                 <input type="number" id="salary" v-model.number="salary" />
@@ -49,14 +63,15 @@
         <div class="text-bg-dark">
             <div class="px-4 py-5">
                 <h2 class="pb-2 border-bottom px-4">Профессия</h2>
-                <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-5 py-5 container">
+                <div class="row align-items-stretch g-5 py-5 container">
                     <img class="card card-cover overflow-hidden rounded-4 shadow-lg"
+                        style="width: 30%;"
                         src="https://sun9-west.userapi.com/sun9-11/s/v1/ig2/tZf3hZeGb_3NdicbSCG7vZvGaftWkBp1vyHzGexUolahMDyTjMi2NSrJZaIbA1BdO5FAfPN2le2ik3nNeHPVDdNE.jpg?size=736x687&quality=95&type=album"
                         alt="placeholder" />
                     <div>
                         <div>
                             <h4>ФИО</h4>
-                            <p>{{FIO}}</p>
+                            <p style="word-break: break-all">{{FIO}}</p>
                         </div>
                         <div>
                             <h4>ДР</h4>
@@ -64,25 +79,29 @@
                         </div>
                         <div>
                             <h4>Город</h4>
-                            <p>{{city}}</p>
+                            <p style="word-break: break-all">{{city}}</p>
                         </div>
                         <div>
                             <h4>Email</h4>
-                            <p>{{email}}</p>
+                            <p style="word-break: break-all">{{email}}</p>
+                        </div>
+                        <div>
+                            <h4>Телефон</h4>
+                            <p>{{phone}}</p>
                         </div>
                     </div>
                     <div>
                         <div>
                             <h4>Образование</h4>
-                            <p>{{education}}</p>
+                            <p style="word-break: break-all">{{education}}</p>
                         </div>
                         <div>
                             <h4>Навыки</h4>
-                            <p>{{skills}}</p>
+                            <p style="word-break: break-all">{{skills}}</p>
                         </div>
                         <div>
                             <h4>О себе</h4>
-                            <p>{{about_me}}</p>
+                            <p style="word-break: break-all">{{about_me}}</p>
                         </div>
                     </div>
                 </div>
@@ -103,77 +122,58 @@
                 BD: "",
                 city: "",
                 email: "",
+                phone: "",
                 education: "",
                 skills: "",
                 about_me: "",
                 salary: "",
+                activeColor: '',
+                activeColor1: '',
+                activeColor2: '',
             },
             watch: {
                 FIO: function (newFIO, oldFIO) {
+                    this.FIO = newFIO;
                     const regex = /[А-ЯA-Zа-яa-z -]/g;
                     newFIO = newFIO.match(regex);
-                    console.log(newFIO);
-                    if (newFIO) {
-                        newFIO = newFIO.join('');
-                        this.FIO = newFIO;
+                    if (!newFIO) {
+                        this.activeColor1="red";
                     }
-                    else {
-                        this.FIO = "";
+                    else{
+                        this.activeColor1="black";
                     }
                 },
                 city: function (newcity, oldcity) {
                     const regex = /[А-ЯA-Zа-яa-z -]/g;
                     newcity = newcity.match(regex);
+                        this.city = newcity;
                     if (newcity) {
                         newcity = newcity.join('');
-                        this.city = newcity;
                     }
                     else {
                         this.city = "";
                     }
                 },
                 email: function (newemail, oldemail) {
+                    this.email = newemail;
                     const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
                     newemail = newemail.match(regex);
-                    if (newemail) {
-                        newemail = newemail.join('');
-                        this.email = newemail;
+                    if (!newemail) {
+                        this.activeColor="red";
                     }
-                    else {
-                        this.email = "";
-                    }
-                },
-                education: function (neweducation, oldeducation) {
-                    const regex = /[А-ЯA-Zа-яa-z -]/g;
-                    neweducation = neweducation.match(regex);
-                    if (neweducation) {
-                        neweducation = neweducation.join('');
-                        this.education = neweducation;
-                    }
-                    else {
-                        this.education = "";
+                    else{
+                        this.activeColor="black";
                     }
                 },
-                skills: function (newskills, oldskills) {
-                    const regex = /[А-ЯA-Zа-яa-z -]/g;
-                    newskills = newskills.match(regex);
-                    if (newskill) {
-                        newskills = newskills.join('');
-                        this.skills = newskills;
+                phone: function (newphone, oldphone) {
+                    this.phone = newphone;
+                    const regex = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7}$/;
+                    newphone = newphone.match(regex);
+                    if (!newphone) {
+                        this.activeColor2="red";
                     }
-                    else {
-                        this.skills = "";
-                    }
-                },
-                about_me: function (newabout_me, oldabout_me) {
-                    const regex = /[А-ЯA-Zа-яa-z -]/g;
-                    newabout_me = newabout_me.match(regex);
-                    if (newabout_me) {
-                        newabout_me = newabout_me.join('');
-                        this.about_me = newabout_me;
-                    }
-                    else {
-                        this.about_me = "";
+                    else{
+                        this.activeColor2="black";
                     }
                 },
             }
