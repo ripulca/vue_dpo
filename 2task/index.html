@@ -202,7 +202,7 @@
           end_year: "",
         },
         watch: {
-          education: function (neweducation, oldeducation) {
+          education: function (neweducation, oldeducation) {    //обработчик значений образования
             zone1 = document.getElementById("education_input");
             zone2 = document.getElementById("edu_view");
             if (
@@ -210,7 +210,7 @@
               neweducation == "Неоконченное высшее" ||
               neweducation == "Высшее"
             ) {
-              zone1.removeAttribute("hidden");
+              zone1.removeAttribute("hidden");      //добавление или удаление атрибута hidden
               zone2.removeAttribute("hidden");
             }
             else{
@@ -218,19 +218,19 @@
               zone2.hidden = "hidden";
             }
           },
-          FIO: function (newFIO, oldFIO) {
+          FIO: function (newFIO, oldFIO) {    //обработчик фио
             this.FIO = newFIO;
             const regex = /[А-ЯA-Zа-яa-z -]/g;
-            newFIO = newFIO.match(regex);
+            newFIO = newFIO.match(regex);     //проверака на совпадение с регуляркой
             if (!newFIO) {
               this.activeColor1 = "red";
             } else {
               this.activeColor1 = "black";
             }
           },
-          city: function (newcity, oldcity) {
+          city: function (newcity, oldcity) {   //обработчик города
             const regex = /[А-ЯA-Zа-яa-z -]/g;
-            newcity = newcity.match(regex);
+            newcity = newcity.match(regex);     //проверака на совпадение с регуляркой
             this.city = newcity;
             if (newcity) {
               newcity = newcity.join("");
@@ -238,20 +238,20 @@
               this.city = "";
             }
           },
-          email: function (newemail, oldemail) {
+          email: function (newemail, oldemail) {    //обработчик почты
             this.email = newemail;
             const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-            newemail = newemail.match(regex);
+            newemail = newemail.match(regex);     //проверака на совпадение с регуляркой
             if (!newemail) {
               this.activeColor = "red";
             } else {
               this.activeColor = "black";
             }
           },
-          phone: function (newphone, oldphone) {
+          phone: function (newphone, oldphone) {    //обработчик телефона
             this.phone = newphone;
             const regex = /^[0-9]{7,10}$/;
-            newphone = newphone.match(regex);
+            newphone = newphone.match(regex);     //проверака на совпадение с регуляркой
             if (!newphone) {
               this.activeColor2 = "red";
             } else {
