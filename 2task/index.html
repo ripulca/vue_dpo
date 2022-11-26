@@ -221,7 +221,7 @@
           FIO: function (newFIO, oldFIO) {    //обработчик фио
             this.FIO = newFIO;
             const regex = /[А-ЯA-Zа-яa-z -]/g;
-            newFIO = newFIO.match(regex);     //проверака на совпадение с регуляркой
+            newFIO = newFIO.match(regex);     //проверка на совпадение с регуляркой
             if (!newFIO) {
               this.activeColor1 = "red";
             } else {
@@ -230,7 +230,7 @@
           },
           city: function (newcity, oldcity) {   //обработчик города
             const regex = /[А-ЯA-Zа-яa-z -]/g;
-            newcity = newcity.match(regex);     //проверака на совпадение с регуляркой
+            newcity = newcity.match(regex);     //проверка на совпадение с регуляркой
             this.city = newcity;
             if (newcity) {
               newcity = newcity.join("");
@@ -241,7 +241,7 @@
           email: function (newemail, oldemail) {    //обработчик почты
             this.email = newemail;
             const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-            newemail = newemail.match(regex);     //проверака на совпадение с регуляркой
+            newemail = newemail.match(regex);     //проверка на совпадение с регуляркой
             if (!newemail) {
               this.activeColor = "red";
             } else {
@@ -250,8 +250,8 @@
           },
           phone: function (newphone, oldphone) {    //обработчик телефона
             this.phone = newphone;
-            const regex = /^[0-9]{7,10}$/;
-            newphone = newphone.match(regex);     //проверака на совпадение с регуляркой
+            const regex = /^[0-9]{6,10}$/;
+            newphone = newphone.match(regex);     //проверка на совпадение с регуляркой
             if (!newphone) {
               this.activeColor2 = "red";
             } else {
