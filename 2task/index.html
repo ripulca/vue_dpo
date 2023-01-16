@@ -234,16 +234,16 @@
               this.activeColor1 = "black";
             }
           },
-          city: function (newcity, oldcity) {   //обработчик города
-            const regex = /[А-ЯA-Zа-яa-z -]/g;
-            newcity = newcity.match(regex);     //проверка на совпадение с регуляркой
-            this.city = newcity;
-            if (newcity) {
-              newcity = newcity.join("");
-            } else {
-              this.city = "";
-            }
-          },
+          // city: function (newcity, oldcity) {   //обработчик города
+          //   const regex = /[А-ЯA-Zа-яa-z -]/g;
+          //   newcity = newcity.match(regex);     //проверка на совпадение с регуляркой
+          //   this.city = newcity;
+          //   if (newcity) {
+          //     newcity = newcity.join("");
+          //   } else {
+          //     this.city = "";
+          //   }
+          // },
           email: function (newemail, oldemail) {    //обработчик почты
             this.email = newemail;
             const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
