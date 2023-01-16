@@ -19,6 +19,15 @@
         <h2>Мое офигенное резюме</h2>
         <br />
         <div>
+          <p>Ссылка на фото</p>
+          <input
+            type="text"
+            id="photo"
+            v-model="photo"
+          />
+        </div>
+        <br />
+        <div>
           <p>Введите ФИО</p>
           <input
             :style="{ color: activeColor1 }"
@@ -72,7 +81,7 @@
         <div id="education_input" hidden="hidden">
           <div>
             <p>Введите учебное заведение</p>
-            <input type="text" v-model="education_place" />
+            <input type="text" id="education_place" v-model="education_place" />
             <br />
           </div>
           <div>
@@ -110,12 +119,8 @@
         <div class="px-4 py-5">
           <h2 class="pb-2 border-bottom px-4">Профессия</h2>
           <div class="row align-items-stretch g-5 py-5 container">
-            <img
-              class="card card-cover overflow-hidden rounded-4 shadow-lg"
-              style="width: 30%"
-              src="https://sun9-west.userapi.com/sun9-11/s/v1/ig2/tZf3hZeGb_3NdicbSCG7vZvGaftWkBp1vyHzGexUolahMDyTjMi2NSrJZaIbA1BdO5FAfPN2le2ik3nNeHPVDdNE.jpg?size=736x687&quality=95&type=album"
-              alt="placeholder"
-            />
+            <img v-bind:src="photo" class="card card-cover overflow-hidden rounded-4 shadow-lg"
+                style="width: 30%; color: black;" id="photo" alt="Нет фото"/>
             <div>
               <div>
                 <h4>ФИО</h4>
@@ -184,6 +189,7 @@
       new Vue({
         el: "#form",
         data: {
+          photo:"",
           FIO: "",
           BD: "",
           city: "",
@@ -258,6 +264,14 @@
               this.activeColor2 = "black";
             }
           },
+          photo:function(newphoto, oldphoto){
+            if (!newphoto) {
+              this.photo=oldphoto
+            }
+            else{
+              this.photo=newphoto;
+            }
+          }
         },
       });
     </script>
