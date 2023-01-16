@@ -55,6 +55,7 @@
             id="email"
             v-model.lazy="email"
           />
+          <p id="feedback_1">{{feedback_1}}</p>
         </div>
         <br />
         <div>
@@ -65,6 +66,7 @@
             id="phone"
             v-model.lazy="phone"
           />
+          <p id="feedback_2">{{feedback_2}}</p>
         </div>
         <br />
         <div>
@@ -206,6 +208,8 @@
           facultet: "",
           specialization: "",
           end_year: "",
+          feedback_1:"",
+          feedback_2:"",
         },
         watch: {
           education: function (neweducation, oldeducation) {    //обработчик значений образования
@@ -249,9 +253,11 @@
             const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
             newemail = newemail.match(regex);     //проверка на совпадение с регуляркой
             if (!newemail) {
-              this.activeColor = "red";
+              this.feedback_1="неверный формат email";
+            //   this.activeColor = "red";
             } else {
-              this.activeColor = "black";
+              this.feedback_1="";
+            //   this.activeColor = "black";
             }
           },
           phone: function (newphone, oldphone) {    //обработчик телефона
@@ -259,9 +265,11 @@
             const regex = /^[0-9]{6,10}$/;
             newphone = newphone.match(regex);     //проверка на совпадение с регуляркой
             if (!newphone) {
-              this.activeColor2 = "red";
+              this.feedback_2="неверный формат телефона";
+              // this.activeColor2 = "red";
             } else {
-              this.activeColor2 = "black";
+              this.feedback_2="";
+              // this.activeColor2 = "black";
             }
           },
           photo:function(newphoto, oldphoto){  //обработчик смены фото
