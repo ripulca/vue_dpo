@@ -35,6 +35,7 @@
             id="FIO"
             v-model="FIO"
           />
+          <p id="feedback_3">{{feedback_3}}</p>
         </div>
         <br />
         <div>
@@ -210,6 +211,7 @@
           end_year: "",
           feedback_1:"",
           feedback_2:"",
+          feedback_3:"",
         },
         watch: {
           education: function (neweducation, oldeducation) {    //обработчик значений образования
@@ -233,9 +235,11 @@
             const regex = /[А-ЯA-Zа-яa-z -]/g;
             newFIO = newFIO.match(regex);     //проверка на совпадение с регуляркой
             if (!newFIO) {
-              this.activeColor1 = "red";
+              this.feedback_3="неверный формат имени, допускаются только русские и английские буквы";
+              // this.activeColor1 = "red";
             } else {
-              this.activeColor1 = "black";
+              this.feedback_3="";
+              // this.activeColor1 = "black";
             }
           },
           // city: function (newcity, oldcity) {   //обработчик города
@@ -253,7 +257,7 @@
             const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
             newemail = newemail.match(regex);     //проверка на совпадение с регуляркой
             if (!newemail) {
-              this.feedback_1="неверный формат email";
+              this.feedback_1="неверный формат email, допускаются только английские буквы";
             //   this.activeColor = "red";
             } else {
               this.feedback_1="";
@@ -265,7 +269,7 @@
             const regex = /^[0-9]{6,10}$/;
             newphone = newphone.match(regex);     //проверка на совпадение с регуляркой
             if (!newphone) {
-              this.feedback_2="неверный формат телефона";
+              this.feedback_2="неверный формат телефона, допускается 6-10 чисел, без служебных символов";
               // this.activeColor2 = "red";
             } else {
               this.feedback_2="";
